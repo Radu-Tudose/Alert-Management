@@ -7,6 +7,23 @@ public class ResourceGroup {
     private final List<User> members;
     private String ipAddress;
 
+    private Server server;
+    private final List<Alert> receivedAlerts = new ArrayList<>();
+
+    public void update() {
+        if (server == null) return;
+
+        Alert a = server.getLastAlert();
+        receivedAlerts.add(a);
+    }
+
+    public void attachServer(Server s) {
+        this.server = s;
+        if (s != null) {
+            server.attachObserver(this);
+        }
+    }
+
     ResourceGroup(String ipAddress) {
         this.ipAddress = ipAddress;
         this.members = new ArrayList<>();

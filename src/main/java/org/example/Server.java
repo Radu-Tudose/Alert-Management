@@ -13,6 +13,30 @@ public class Server {
     private Integer ramGb;
     private Integer storageGb;
 
+    private Alert lastAlert;
+    private ResourceGroup observer;
+
+    public Alert getLastAlert() {
+        return lastAlert;
+    }
+
+    public void attachObserver(ResourceGroup observer) {
+        this.observer = observer;
+    }
+
+    public void setAlert(Alert alert) {
+        this.lastAlert = alert;
+        notifyObserver();
+    }
+
+    public void notifyObserver() {
+        if (observer != null) {
+            observer.update();
+        }
+    }
+
+
+
     Server(Builder b) {
         this.ipAddress = b.ipAddress;
         this.location = b.location;
@@ -22,6 +46,10 @@ public class Server {
         this.cpuCores = b.cpuCores;
         this.ramGb = b.ramGb;
         this.storageGb = b.storageGb;
+    }
+
+    public String getIpAddress() {
+        return ipAddress;
     }
 
     //Builder Class
