@@ -46,8 +46,19 @@ public class ResourceGroup {
         members.add(u);
     }
 
-    public void removeMember(User u) {
-        if (u == null) return;
-        members.remove(u);
+    public boolean removeMember(String name, String role) {
+        User u = findMember(name, role);
+        if (u == null) return false;
+        return members.remove(u);
     }
+
+    public User findMember(String name, String role) {
+        for (User u : members) {
+            if (u.getName().equals(name) && u.getRole().equals(role)) {
+                return u;
+            }
+        }
+        return null;
+    }
+
 }
