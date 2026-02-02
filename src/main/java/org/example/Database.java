@@ -75,10 +75,10 @@ public class Database {
         return null;
     }
 
-    private void constructServer(String hostname, String ip_address, String status, String country,
-                                   String city, String address, String lat, String longi, String username,
-                                   String role, String email, String dept, String clearance, String cpu_cores,
-                                   String ram, String storage)
+    public void constructServer(String hostname, String ip_address, String status, String country,
+                                 String city, String address, String lat, String longi, String username,
+                                 String role, String email, String dept, String clearance, String cpu_cores,
+                                 String ram, String storage)
             throws MissingIpAddressException, UserException, LocationException {
 
         if (ip_address == null || ip_address.isEmpty()) {
@@ -138,7 +138,7 @@ public class Database {
         addServer(s);
     }
 
-    private void constructGroup(String ip_address) throws MissingIpAddressException {
+    public void constructGroup(String ip_address) throws MissingIpAddressException {
 
         if (ip_address == null || ip_address.isEmpty()) {
             throw new MissingIpAddressException();
@@ -148,7 +148,7 @@ public class Database {
         addResourceGroup(group);
     }
 
-    private ResourceGroup findGroup(String ip_address) throws MissingIpAddressException {
+    public ResourceGroup findGroup(String ip_address) throws MissingIpAddressException {
 
         if (ip_address == null || ip_address.isEmpty()) {
             throw new MissingIpAddressException();
@@ -157,7 +157,7 @@ public class Database {
         return findGroupByIp(ip_address);
     }
 
-    private ResourceGroup removeGroup(String ip_address) throws MissingIpAddressException {
+    public ResourceGroup removeGroup(String ip_address) throws MissingIpAddressException {
 
         if (ip_address == null || ip_address.isEmpty()) {
             throw new MissingIpAddressException();
@@ -171,7 +171,7 @@ public class Database {
         return group; // null = not found
     }
 
-    private ResourceGroup addMember(String ip_address, String name, String role, String email,
+    public ResourceGroup addMember(String ip_address, String name, String role, String email,
                                     String dept, String clearance)
             throws MissingIpAddressException {
 
@@ -195,7 +195,7 @@ public class Database {
         return group;
     }
 
-    private AlertTypes parseAlertType(String raw) {
+    public AlertTypes parseAlertType(String raw) {
         for (AlertTypes t : AlertTypes.values()) {
             if (t.getValue().equalsIgnoreCase(raw)) {
                 return t;
@@ -204,7 +204,7 @@ public class Database {
         return null;
     }
 
-    private Severity parseSeverity(String raw) {
+    public Severity parseSeverity(String raw) {
         for (Severity s : Severity.values()) {
             if (s.getValue().equalsIgnoreCase(raw)) {
                 return s;
@@ -213,7 +213,7 @@ public class Database {
         return null;
     }
 
-    private void constructEvent(String alertType, String alertSeverity, String ipAddress, String message)
+    public void constructEvent(String alertType, String alertSeverity, String ipAddress, String message)
             throws MissingIpAddressException {
 
         if (ipAddress == null || ipAddress.isEmpty()) {
