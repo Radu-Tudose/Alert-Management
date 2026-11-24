@@ -14,4 +14,4 @@ sa i trantesti toate atributele posibile, si o functie in spate sa faca ea disti
 4. Observer - scria explicit in cerinta ca, atunci cand este creata o noua alerta, serverul legat de alerta trebuie
 sa notifice ResourceGroup ul care il monitorizeaza, deci Observer este perfect. am legat un Server de un Group,
 si cand este creata o noua Alerta, aceasta este retinuta de Server, iar Group este "notificat", adica alerta
-este retinuta intr-un array de alerte primite pentru a simula un log al alertelor
+este retinuta intr-un array de alerte primite pentru a simula un log al alertelor 
